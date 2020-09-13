@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28307.779
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex04.Menus.Test", "Ex04.Menus.Test\Ex04.Menus.Test.csproj", "{F3B534B5-CFCA-4CF8-AD3C-B7D1A30F4C58}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex04.Menus.Interfaces", "Ex04.Menus.Interfaces\Ex04.Menus.Interfaces.csproj", "{76ED8658-D701-42BE-A870-FCBF552B234D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex04.Menus.Delegates", "Ex04.Menus.Delegates\Ex04.Menus.Delegates.csproj", "{AE470914-DBA1-4020-A625-10356E2419DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{F3B534B5-CFCA-4CF8-AD3C-B7D1A30F4C58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3B534B5-CFCA-4CF8-AD3C-B7D1A30F4C58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3B534B5-CFCA-4CF8-AD3C-B7D1A30F4C58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76ED8658-D701-42BE-A870-FCBF552B234D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76ED8658-D701-42BE-A870-FCBF552B234D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76ED8658-D701-42BE-A870-FCBF552B234D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76ED8658-D701-42BE-A870-FCBF552B234D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE470914-DBA1-4020-A625-10356E2419DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE470914-DBA1-4020-A625-10356E2419DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE470914-DBA1-4020-A625-10356E2419DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE470914-DBA1-4020-A625-10356E2419DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

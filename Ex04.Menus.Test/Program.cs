@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace Ex04.Menus.Test
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main()
         {
+            InterfacesMenu interfacesMenu = new InterfacesMenu();
+            DelegatesMenu delegatesMenu = new DelegatesMenu();
         }
     }
 }
