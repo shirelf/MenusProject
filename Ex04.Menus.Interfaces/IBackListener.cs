@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Ex04.Menus.Interfaces
 {
-    public interface INotifyListener
+    public interface IBackListener
     {
-        void ReportChosen(int i_Index);
+        void BackChosen();
     }
 }

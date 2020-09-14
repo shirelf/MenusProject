@@ -6,24 +6,36 @@ namespace Ex04.Menus.Test
 {
     public class InterfacesMenu
     {
+        // Private Members
+        private MainMenu m_MainMenu;
 
+        // Constructors
         public InterfacesMenu()
         {
-            List<MenuItem> firstMenu = new List<MenuItem>();
-            List<MenuItem> secondMenu = new List<MenuItem>();
+            m_MainMenu = new MainMenu();
 
-            MenuItem countSpaces = new MenuItem("Count Spaces", new CountSpaces());
-            MenuItem showVersion = new MenuItem("Show Version", new ShowVersion());
-            firstMenu.Add(countSpaces);
-            firstMenu.Add(showVersion);
+            MenuItem versionAndSpaceItem = new MenuItem("Version and Spaces");
+            MenuItem dateTimeMenu = new MenuItem("Show Date/Time");
 
-            MenuItem showDateItem = new MenuItem("Show Date", new ShowDate());
-            MenuItem showTimeItem = new MenuItem("Show Time", new ShowTime());
-            secondMenu.Add(showDateItem);
-            secondMenu.Add(showDateItem);
+            versionAndSpaceItem.AddNewItems(new MenuItem("Count Spaces", new CountSpaces()), new MenuItem("Show Version", new ShowVersion()));
+            dateTimeMenu.AddNewItems(new MenuItem("Show Date", new ShowDate()), new MenuItem("Show Time", new ShowTime()));
 
-            MenuItem versionAndSpaceItem = new MenuItem("Version and Spaces", firstMenu);
-            MenuItem dateTimeMenu = new MenuItem("Show Date/Time", secondMenu);
+            m_MainMenu.AddNewItems(versionAndSpaceItem);
+            m_MainMenu.AddNewItems(dateTimeMenu);
+        }
+
+        // Properties
+        public MainMenu MainMenuList
+        {
+            get
+            {
+                return m_MainMenu;
+            }
+
+            set
+            {
+                m_MainMenu = value;
+            }
         }
     }
 }

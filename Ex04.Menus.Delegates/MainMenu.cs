@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Ex04.Menus.Interfaces
+namespace Ex04.Menus.Delegates
 {
-    public class MainMenu : IBackListener
+    public class MainMenu
     {
         // Private Members
-        protected string m_Title;
-        protected List<MenuItem> m_MenuItems;
+        private string m_Title;
+        private List<MenuItem> m_MenuItems;
 
         // Constructors
         public MainMenu()
@@ -27,7 +30,7 @@ namespace Ex04.Menus.Interfaces
                 Console.WriteLine(string.Format("{0}. {1}", i + 1, m_MenuItems[i].Title));
             }
 
-            Console.WriteLine(string.Format("0. Exit"));
+            Console.WriteLine("0. Exit");
             string userInput = Console.ReadLine();
             while (!InputValidator.IsIndexValid(userInput, m_MenuItems.Count))
             {
@@ -37,7 +40,7 @@ namespace Ex04.Menus.Interfaces
 
             int chosenIndex = int.Parse(userInput);
 
-            if (chosenIndex == 0) 
+            if (chosenIndex == 0)
             {
                 Environment.Exit(-1);
             }
@@ -47,18 +50,21 @@ namespace Ex04.Menus.Interfaces
             }
         }
 
-        public void AddNewItems(params MenuItem[] i_ItemToAdd)
+        public void AddNewMenu(MenuItem i_MenuToAdd)
         {
-            foreach (MenuItem item in i_ItemToAdd)
-            {
-                m_MenuItems.Add(item);
-                item.BackListener = this;
-            }
+            m_MenuItems.Add(i_MenuToAdd);
+            i_MenuToAdd.BackChosen += OnBackChosen;
         }
 
-        void IBackListener.BackChosen()
+        public void AddNewAction(MenuItem i_ActionToAdd, Action OnEventHandler)
         {
-            Show();
+            m_MenuItems.Add(i_ActionToAdd);
+            i_ActionToAdd.ActionActivated += OnEventHandler;
+        }
+
+        private void OnBackChosen()
+        {
+            this.Show();
         }
 
         // Properties
@@ -80,5 +86,6 @@ namespace Ex04.Menus.Interfaces
                 m_MenuItems = value;
             }
         }
+
     }
 }

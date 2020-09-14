@@ -11,7 +11,11 @@ namespace Ex04.Menus.Test
         public static void Main()
         {
             InterfacesMenu interfacesMenu = new InterfacesMenu();
-            DelegatesMenu delegatesMenu = new DelegatesMenu();
+            //DelegatesMenu delegatesMenu = new DelegatesMenu();
+            interfacesMenu.MainMenuList.Show();
+            //delegatesMenu.MainMenuList.Show();
+            Console.WriteLine("Press any key to continue..");
+            Console.ReadKey();
         }
     }
 }

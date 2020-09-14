@@ -1,27 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Ex04.Menus.Interfaces
+namespace Ex04.Menus.Delegates
 {
-    public class MenuItem : MainMenu, IBackListener
+    public class MenuItem
     {
+        public event Action BackChosen;
+
+        public event Action ActionActivated;
+
         // Private Members
-        //private string m_Title;
-        //private List<MenuItem> m_MenuItems;
-        private IAction m_Action;
-        private IBackListener m_BackListener;
+        private string m_Title;
+        private List<MenuItem> m_MenuItems;
 
         // Constructors
-        public MenuItem(string i_Title) : base()
+        public MenuItem(string i_Title)
         {
             m_Title = i_Title;
-            m_MenuItems = new List<MenuItem>();
-        }
-
-        public MenuItem(string i_Title, IAction i_Action)
-        {
-            m_Title = i_Title;
-            m_Action = i_Action;
             m_MenuItems = new List<MenuItem>();
         }
 
@@ -29,9 +27,9 @@ namespace Ex04.Menus.Interfaces
         public void Show()
         {
             Console.Clear();
-            if(m_MenuItems.Count == 0)
+            if (m_MenuItems.Count == 0)
             {
-                m_Action.Execute();
+                ActionActivated.Invoke();
             }
             else
             {
@@ -51,10 +49,10 @@ namespace Ex04.Menus.Interfaces
                 }
 
                 int chosenIndex = int.Parse(userInput);
-                
+
                 if (chosenIndex == 0)
                 {
-                    BackListener.BackChosen();
+                    BackChosen.Invoke();
                 }
                 else
                 {
@@ -63,18 +61,21 @@ namespace Ex04.Menus.Interfaces
             }
         }
 
-        public void AddNewItems(params MenuItem[] i_ItemToAdd)
+        public void AddNewMenu(MenuItem i_MenuToAdd)
         {
-            foreach(MenuItem item in i_ItemToAdd)
-            {
-                m_MenuItems.Add(item);
-                item.BackListener = this;
-            }
+            m_MenuItems.Add(i_MenuToAdd);
+            i_MenuToAdd.BackChosen += OnBackChosen;
         }
 
-        void IBackListener.BackChosen()
+        public void AddNewAction(MenuItem i_ActionToAdd, Action OnEventHandler)
         {
-            Show();
+            m_MenuItems.Add(i_ActionToAdd);
+            i_ActionToAdd.ActionActivated += OnEventHandler;
+        }
+
+        private void OnBackChosen()
+        {
+            this.Show();
         }
 
         // Properties
@@ -94,19 +95,6 @@ namespace Ex04.Menus.Interfaces
             set
             {
                 m_MenuItems = value;
-            }
-        }
-
-        public IBackListener BackListener
-        {
-            get
-            {
-                return m_BackListener;
-            }
-
-            set
-            {
-                m_BackListener = value;
             }
         }
     }
