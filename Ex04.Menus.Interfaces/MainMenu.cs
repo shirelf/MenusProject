@@ -27,8 +27,14 @@ namespace Ex04.Menus.Interfaces
             {
                 Console.WriteLine(string.Format("{0}. {1}", i + 1, m_MenuItems[i].Title));
             }
-
-            Console.WriteLine(string.Format("0. Exit"));
+            if (this.GetType() == typeof(MenuItem))
+            {
+                Console.WriteLine("0. Back");
+            }
+            else
+            {
+                Console.WriteLine("0. Exit");
+            }
             string userInput = Console.ReadLine();
             while (!InputValidator.IsIndexValid(userInput, m_MenuItems.Count))
             {
@@ -40,13 +46,13 @@ namespace Ex04.Menus.Interfaces
 
             if (chosenIndex == 0) 
             {
-                if(this.GetType() == typeof(MainMenu))
-                {
-                    Environment.Exit(-1);
-                }
-                else if(this.GetType() == typeof(MenuItem))
+                if(this.GetType() == typeof(MenuItem))
                 {
                     BackListener.BackChosen();
+                }
+                else
+                {
+                    Environment.Exit(-1);
                 }
             }
             else
