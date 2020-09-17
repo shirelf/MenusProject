@@ -9,18 +9,20 @@ namespace Ex04.Menus.Delegates
     public class MainMenu
     {
         // Private Members
-        private string m_Title;
-        private List<MenuItem> m_MenuItems;
+        protected string m_Title;
+        protected List<MenuItem> m_MenuItems;
 
+        public event Action BackChosen;
+         
         // Constructors
-        public MainMenu()
+        public MainMenu(string i_Title)
         {
-            m_Title = "Main Menu";
+            m_Title = i_Title;
             m_MenuItems = new List<MenuItem>();
         }
 
         // Public Methods
-        public void Show()
+        public virtual void Show()
         {
             Console.Clear();
             Console.WriteLine(string.Format("---- {0} ----", m_Title));
@@ -42,7 +44,14 @@ namespace Ex04.Menus.Delegates
 
             if (chosenIndex == 0)
             {
-                Environment.Exit(-1);
+                if (this.GetType() == typeof(MainMenu))
+                {
+                    Environment.Exit(-1);
+                }
+                else if (this.GetType() == typeof(MenuItem))
+                {
+                    BackChosen.Invoke();
+                }
             }
             else
             {
@@ -86,6 +95,5 @@ namespace Ex04.Menus.Delegates
                 m_MenuItems = value;
             }
         }
-
     }
 }

@@ -12,7 +12,7 @@ namespace Ex04.Menus.Test
         // Constructors
         public DelegatesMenu()
         {
-            m_MainMenu = new MainMenu();
+            m_MainMenu = new MainMenu("Main Menu");
 
             MenuItem versionAndSpaceItem = new MenuItem("Version and Spaces");
             MenuItem dateTimeMenu = new MenuItem("Show Date/Time");
@@ -45,7 +45,7 @@ namespace Ex04.Menus.Test
         {
             ShowTime.Activate();
         }
-        // Properties
+
         public MainMenu MainMenuList
         {
             get

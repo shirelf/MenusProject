@@ -5,7 +5,6 @@ namespace Ex04.Menus.Test
 {
     public class ShowDate : IAction
     {
-
         public static void Activate()
         {
             Console.Clear();

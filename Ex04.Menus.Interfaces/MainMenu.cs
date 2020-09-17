@@ -8,7 +8,8 @@ namespace Ex04.Menus.Interfaces
         // Private Members
         protected string m_Title;
         protected List<MenuItem> m_MenuItems;
-
+        protected IBackListener m_BackListener;
+       
         // Constructors
         public MainMenu()
         {
@@ -17,7 +18,7 @@ namespace Ex04.Menus.Interfaces
         }
 
         // Public Methods
-        public void Show()
+        public virtual void Show()
         {
             Console.Clear();
             Console.WriteLine(string.Format("---- {0} ----", m_Title));
@@ -39,7 +40,14 @@ namespace Ex04.Menus.Interfaces
 
             if (chosenIndex == 0) 
             {
-                Environment.Exit(-1);
+                if(this.GetType() == typeof(MainMenu))
+                {
+                    Environment.Exit(-1);
+                }
+                else if(this.GetType() == typeof(MenuItem))
+                {
+                    BackListener.BackChosen();
+                }
             }
             else
             {
@@ -78,6 +86,19 @@ namespace Ex04.Menus.Interfaces
             set
             {
                 m_MenuItems = value;
+            }
+        }
+
+        public virtual IBackListener BackListener
+        {
+            get
+            {
+                return m_BackListener;
+            }
+
+            set
+            {
+                m_BackListener = value;
             }
         }
     }
